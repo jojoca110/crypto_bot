@@ -25,7 +25,7 @@ if __name__ == "__main__":
                 # telegram_bot = TelegramBot()
                 print("✅ Telegram setup successful!")
             except Exception as e:
-                print("❌ Telegram setup failed")
+                print(f"❌ Telegram setup failed: {e}")
                 telegram_bot = None
         else:
             print("Invalid credentials- Telegram disabled")
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     print("AGGRESSIVENESS LEVELS:")
     print("1. MODERATE (3x leverage, 60% confidence)")
     print("2. AGGRESSIVE (5x leverage, 55% confidence)")
-    print("3. VERY AGRESSIVE (10x leverage, 50% confidence) 🚨 EXTREME RISK 🚨")
+    print("3. VERY AGGRESSIVE (10x leverage, 50% confidence) 🚨 EXTREME RISK 🚨")
 
     choice = input("\nChoose (1-3) or press Enter for MODERATE: ").strip()
 
@@ -55,5 +55,27 @@ if __name__ == "__main__":
     MIN_CONFIDENCE = PRESET["min_confidence"]
     MAX_POSITION_PER_ASSET = PRESET["max_position_per_asset"]
     RESERVE_CASH_PERCENT = PRESET["reserve_cash"]
-    MAX_POSITION = PRESET["max_positions"]
+    MAX_POSITIONS = PRESET["max_positions"]
     POSITION_BASE_PERCENT = PRESET["position_base_percent"]
+
+    print(f"STARTING TRADING BOT")
+    print(f" Level: {AGGRESSIVENESS_LEVEL} ({MARGIN_LEVERAGE}x leverage)")
+    print(f" Min Confidence: {MIN_CONFIDENCE:.0%}")
+    print(f" Max Positions: {MAX_POSITIONS}")
+    print(f" Margin Level: {MIN_SAFE_MARGIN_LEVEL} minimum")
+
+    if telegram_bot:
+        print(f"Telegram: Enabled")
+
+    print("=" * 60)
+    print("🔴 TRADING WITH REAL MONEY - will run indefinitely")
+    print("⛔ Stop with Ctrl+C or Binance 'Repay All Debt'")
+    print("=" * 60)
+
+    confirm = input("Start Trading? (y/n): ")
+
+    if confirm.lower() in ['y', 'yes']:
+        print("Starting bot...")
+        # bot = TradingBot()
+    else:
+        print("Trading cancelled.")

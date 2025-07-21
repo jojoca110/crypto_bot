@@ -56,4 +56,4 @@ if __name__ == "__main__":
     MAX_POSITION_PER_ASSET = PRESET["max_position_per_asset"]
     RESERVE_CASH_PERCENT = PRESET["reserve_cash"]
     MAX_POSITION = PRESET["max_positions"]
-    POSITION_BASE_PERCENT = PRESET["postion_base_percent"]
+    POSITION_BASE_PERCENT = PRESET["position_base_percent"]

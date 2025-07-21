@@ -8,3 +8,4 @@ API_SECRET = "Your secret key"
 TG_BOT_TOKEN = "Your bot token"
 TG_CHAT_ID = "Your chat id"
 
+print("Testing branch")

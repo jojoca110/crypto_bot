@@ -1,4 +1,5 @@
 from config import *
+from telegram_bot import TelegramBot
 
 if __name__ == "__main__":
     print("ADVANCED LEVERAGED CRYPTO TRADING BOT")
@@ -22,7 +23,7 @@ if __name__ == "__main__":
 
         if bot_token and chat_id:
             try:
-                # telegram_bot = TelegramBot()
+                telegram_bot = TelegramBot(bot_token, chat_id)
                 print("✅ Telegram setup successful!")
             except Exception as e:
                 print(f"❌ Telegram setup failed: {e}")

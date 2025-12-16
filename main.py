@@ -22,14 +22,15 @@ if __name__ == "__main__":
         chat_id = TG_CHAT_ID
 
         if bot_token and chat_id:
-            try:
-                telegram_bot = TelegramBot(bot_token, chat_id)
+            telegram_bot = TelegramBot(bot_token, chat_id)
+            if telegram_bot.enabled:
                 print("✅ Telegram setup successful!")
-            except Exception as e:
-                print(f"❌ Telegram setup failed: {e}")
+            else:
+                print("❌ Telegram setup failed")
                 telegram_bot = None
         else:
             print("Invalid credentials- Telegram disabled")
+            telegram_bot = None
 
     print("AGGRESSIVENESS LEVELS:")
     print("1. MODERATE (3x leverage, 60% confidence)")

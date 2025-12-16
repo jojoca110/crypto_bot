@@ -8,10 +8,15 @@ class TelegramBot:
         self.bot_token = bot_token
         self.chat_id = chat_id
         self.enabled = bool(bot_token and chat_id)
+        #self.enabled = False
 
         if self.enabled:
-            print("Telegram notifications enabled")
-            self.send_message("Trading Bot Connected!\n\nReady to send trading updates.")
+            # Test connection with the initial message
+            if self.send_message("Trading Bot Connected!\n\nReady to send trading updates."):
+                print("✅ Telegram notifications enabled")
+            else:
+                self.enabled = False
+                print("❌ Error connecting to Telegram bot. Please check your bot_token and chat_id.")
 
     def send_message(self, message):
         """Send message to Telegram"""
@@ -26,7 +31,11 @@ class TelegramBot:
                 'parse_mode': 'HTML'
             }
             response = requests.post(url, data=data, timeout=10)
-            return response.status_code == 200
+            if response.status_code != 200:
+                print(f"❌ Telegram message failed: {response.status_code} - {response.text}")
+                return False
+
+            return True
         except Exception as e:
             print(f"❌ Telegram error: {e}")
             return False
